@@ -1,0 +1,17 @@
+.button {
+	background-color: var(--lavender);
+	border-radius: 1rem;
+	color: white;
+	display: inline-block;
+	position: absolute;
+	bottom: 1rem;
+	right: 1rem;
+	z-index: 10;
+	
+	a {
+		display: flex;
+		padding: 1rem;
+		color: white;
+		text-decoration: none;
+	}
+}

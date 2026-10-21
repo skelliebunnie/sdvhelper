@@ -1,0 +1,11 @@
+header.page-header {
+	display: flex;
+	flex-flow: row nowrap;
+	padding: 2rem;
+	flex: 0;
+	
+	.title {
+		color: white;
+		font-size: 2rem;
+	}
+}

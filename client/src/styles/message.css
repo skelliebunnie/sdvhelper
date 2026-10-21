@@ -1,0 +1,37 @@
+.message {
+	display: flex;
+	flex-flow: row nowrap;
+	width: 90%;
+	margin: 0 auto;
+	justify-content: start;
+	align-items: center;
+	gap: 1rem;
+	padding: 1rem;
+	border-radius: 0.25em;
+	
+	.icon-wrapper {
+		height: 100%;
+		border-radius: 50%;
+		padding: 1rem;
+		background: var(--grey);
+		color: white;
+	}
+	
+	&.warn {
+		background: var(--torch);
+		border: 1px solid var(--yellow);
+		
+		.icon-wrapper {
+			background-color: var(--yellow);
+		}
+	}
+	
+	&.success {
+		background: var(--green);
+		border: 1px solid var(--forest);
+		
+		.icon-wrapper {
+			background-color: var(--forest);
+		}
+	}
+}
