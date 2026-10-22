@@ -45,6 +45,7 @@ export async function createItem(req, res) {
 			qiColorQuest,
 			addedBy
 		} = req.body;
+		console.log(req.body);
 		const newItem = new Item({
 			itemName,
 			description,

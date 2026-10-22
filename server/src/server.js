@@ -11,14 +11,14 @@ dotenv.config();
 import itemsRoutes from "./routes/itemsRoutes.js";
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 
 // middleware
 app.use(cors({
-	origin: "http://localhost:5173",
+	origin: process.env.CLIENT_URI || "http://localhost:5173",
 	methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
 	allowedHeaders: ['Content-Type', 'Authorization'],
-	// credentials: true // required if sending cookings or auth headers
+	//credentials: true // required if sending cookings or auth headers
 }));
 
 app.use(express.json()); // parses JSON bodies: req.body

@@ -1,6 +1,10 @@
+import { useState, useEffect } from "react"
 import { CheckIcon, XIcon, PencilIcon, TrashIcon } from "lucide-react"
 import { Link } from "react-router"
-import Button from "./Button.jsx"
+import toast from "react-hot-toast"
+import axios from "axios"
+
+import RateLimitMessage from "../components/RateLimitMessage"
 
 const ItemList = ({ data }) => {
 	return (
@@ -17,7 +21,7 @@ const ItemList = ({ data }) => {
 			</thead>
 			<tbody>
 				{data.map(item => (
-					<tr data-id={item._id}>
+					<tr key={item._id} data-id={item._id}>
 						<th>{item.itemName ? item.itemName : ""}</th>
 						<th>{item.type ? item.type : ""}</th>
 						<th>{item.source ? item.source : ""}</th>
@@ -34,4 +38,40 @@ const ItemList = ({ data }) => {
 	)
 }
 
-export default ItemList;
+const AllItems = () => {
+	const [isRateLimited, setIsRateLimited] = useState(false);
+	const [items, setItems] = useState([]);
+	const [loading, setLoading] = useState(true);
+	
+	useEffect(() => {
+		const fetchItems = async () => {
+			try {
+				const res = await axios.get("http://localhost:5001/api/items");
+				setItems(res.data);
+				setIsRateLimited(false);
+				
+			} catch(error) {
+				console.error("Error fetching items");
+				if(error.response.status == 429) {
+					setIsRateLimited(true);
+				} else {
+					toast.error("Failed to load items");
+				}
+			} finally {
+				setLoading(false);
+			}
+		}
+		
+		fetchItems();
+	}, []);
+	
+	return (
+		<>
+		{isRateLimited && <RateLimitMessage type="warn" />}
+		{loading && <div className="loading">Loading Items ...</div>}
+		{!loading && items.length > 0 && <ItemList data={items} />}
+		</>
+	)
+}
+
+export default AllItems;

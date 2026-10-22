@@ -19,5 +19,9 @@
   },
   "devDependencies": {
     "nodemon": "^1.14.10"
+  },
+  "allowScripts": {
+    "fsevents@1.2.13": true,
+    "nodemon@1.19.4": true
   }
 }
