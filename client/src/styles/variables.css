@@ -1,5 +1,6 @@
 :root {
 	--brown: #56160C;
+	--cloud: #d3eef8;
 	--blue: #87CEEB;
 	--red: #b41500;
 	--purple: #6E2BFF;
@@ -13,6 +14,7 @@
 	--indigo: #22223B;
 	--grey: #3F403F;
 	--almond: #E0D0C1;
+	--cream: #f5f0ea;
 	--forest: #2B9720;
 	--lavender: #A06CD5;
 }
