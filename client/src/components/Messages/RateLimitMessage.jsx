@@ -1,6 +1,6 @@
 import { ZapIcon } from "lucide-react";
 
-import "../styles/message.css";
+import "../../styles/message.css";
 
 const RateLimitMessage = ({ type = "success" }) => {
 	return (

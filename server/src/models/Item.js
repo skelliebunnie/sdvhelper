@@ -4,14 +4,14 @@ import mongoose from "mongoose";
 // 2 - model based off that schema
 
 const itemSchema = new mongoose.Schema({
-	itemName: {
+	name: {
 		type: String,
 		required: true
 	},
-	type: String,
+	type: { type: mongoose.Schema.ObjectId, ref: 'ItemType' },
 	description: String,
 	source: String,
-	recipeSource: [ String ],
+	recipeSource: [String],
 	ingredients: [{ type: mongoose.Schema.ObjectId, ref: 'Item' }],
 	equipment: String,
 	sellPrice: {
@@ -24,6 +24,31 @@ const itemSchema = new mongoose.Schema({
 		}
 	},
 	edible: Boolean,
+	locations: [{ type: mongoose.Schema.ObjectId, ref: 'Location' }],
+	weather: String,
+	time: [{
+		season: String,
+		intervals: [{
+			open: {
+				type: Number,
+				required: false,
+				unique: false,
+				validate: {
+					validator: Number.isInteger,
+					message: "{VALUE} is not an integer"
+				}
+			},
+			close: {
+				type: Number,
+				required: false,
+				unique: false,
+				validate: {
+					validator: Number.isInteger,
+					message: "{VALUE} is not an integer"
+				}
+			},
+		}]
+	}],
 	difficulty: {
 		type: Number,
 		required: false,

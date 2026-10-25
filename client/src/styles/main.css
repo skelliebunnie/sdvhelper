@@ -4,6 +4,11 @@ body {
 	background-color: var(--indigo);
 }
 
+a {
+	text-decoration: none;
+	color: var(--indigo);
+}
+
 div.page-wrapper {
 	display: flex;
 	flex-flow: column nowrap;
@@ -14,10 +19,43 @@ div.page-wrapper {
 main.page-container {
 	background: var(--almond);
 	color: var(--brown);
-	padding: 1rem;
 	flex: 1;
+}
+
+.content-wrapper {
+	padding: 1rem;
 }
 
 table .edit-delete .icon-link {
 	display: inline-block;
+}
+
+.back-button a {
+	display: flex;
+}
+
+.loader {
+	width: 100%;
+	svg {
+		margin: 0 auto;
+		color: var(--grey);
+	}
+}
+
+.mobile {
+	display: block;
+}
+
+@media (min-width: 768px) {
+	.mobile {
+		display: none;
+	}
+}
+
+.page-title {
+	text-align: center;
+	background-color: var(--lavender);
+	margin: 0;
+	color: white;
+	padding: 1rem;
 }

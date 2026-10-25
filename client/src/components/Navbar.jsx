@@ -1,14 +1,80 @@
-import "../styles/navbar.css"
+import { useState } from "react";
+import { Link } from "react-router";
+import { MenuIcon } from "lucide-react-motion";
+
+import "../styles/navbar.css";
+
+const LinkItem = ({ items, setMobileMenuVisible }) => {
+  return (
+    <li key={items[0].title}>
+      <Link onClick={() => setMobileMenuVisible(false)} to={items[0].target}>{items[0].title}</Link> 
+      <Link onClick={() => setMobileMenuVisible(false)} to={items[1].target}>{items[1].title}</Link> 
+    </li>
+  )
+}
 
 const Navbar = () => {
-	return (
-		<header className="page-header">
-			<div className="title">
-				<h1>Stardew Valley Helper</h1>
-			</div>
-			<div className="menu"></div>
-		</header>
-	)
-}
+	const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
+	
+  const toggleMenu = () => {
+    setMobileMenuVisible(!mobileMenuVisible);
+  };
+  
+  const navigation = [
+    [
+      {
+        target: "/items",
+        title: "Items"
+      },
+      {
+        target: "/item/create",
+        title: "New Item"
+      }
+    ],
+    [
+      {
+        target: "/itemtypes",
+        title: "Item Types"
+      },
+      {
+        target: "/itemtype/create",
+        title: "New Item Type"
+      }
+    ],
+    [
+      {
+        target: "/locations",
+        title: "Locations"
+      },
+      {
+        target: "/location/create",
+        title: "New Location"
+      }
+    ]
+  ]
+
+  return (
+    <>
+      <header className="site-header">
+        <div className="title">
+          <h1>
+            <Link to="/">Stardew Valley Helper</Link>
+          </h1>
+        </div>
+
+        <div className="menu-icon mobile">
+          <MenuIcon size={90} onClick={(e) => toggleMenu(e)} />
+        </div>
+      </header>
+      <nav className="site-nav">
+        <ul className={mobileMenuVisible ? "menu show" : "menu"}>
+          {navigation && navigation.map(set => (
+            <LinkItem items={set} setMobileMenuVisible={setMobileMenuVisible} />
+          ))}
+        </ul>
+      </nav>
+    </>
+  );
+};
 
 export default Navbar;

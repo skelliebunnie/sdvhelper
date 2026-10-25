@@ -8,7 +8,9 @@ import cors from "cors";
 dotenv.config();
 
 // routes
-import itemsRoutes from "./routes/itemsRoutes.js";
+import itemRoutes from "./routes/itemRoutes.js";
+import itemTypeRoutes from "./routes/ItemTypeRoutes.js";
+import locationRoutes from "./routes/locationRoutes.js";
 
 const app = express();
 const PORT = process.env.PORT || 5001;
@@ -24,9 +26,9 @@ app.use(cors({
 app.use(express.json()); // parses JSON bodies: req.body
 app.use(rateLimiter);
 
-app.use("/api/items", itemsRoutes);
-
-//TODO: app.use("/api/npcs", npcsRoutes);
+app.use("/api/items", itemRoutes);
+app.use("/api/itemtypes", itemTypeRoutes);
+app.use("/api/locations", locationRoutes);
 
 // connect to database before connecting to app/server
 connectDB().then(() => {

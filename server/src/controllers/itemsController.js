@@ -1,9 +1,16 @@
 import Item from "../models/Item.js";
+import ItemType from "../models/ItemType.js";
 
 export async function getAllItems(_, res) {
 	try {
 		// this will sort it by the name by default
-		const items = (await Item.find().sort({ itemName: 1 }));
+		const items = (
+			await Item.find().sort({ name: 1 })
+				.populate("type")
+				.exec()
+		);
+			
+		console.log(items);
 		res.status(200).json(items);
 		
 	} catch(error) {
@@ -16,7 +23,7 @@ export async function getAllItems(_, res) {
 export async function getItemById(req, res) {
 	try {
 		const item = await Item.findById(req.params.id);
-		if(!item) return res.status(404).json({message: "Item note found"});
+		if(!item) return res.status(404).json({message: "Item not found"});
 		res.status(200).json(item);
 	} catch(error) {
 		console.error("Error in getItemById controller", error);
@@ -27,7 +34,7 @@ export async function getItemById(req, res) {
 export async function createItem(req, res) {
 	try {
 		const {
-			itemName,
+			name,
 			description,
 			type,
 			source,
@@ -45,9 +52,9 @@ export async function createItem(req, res) {
 			qiColorQuest,
 			addedBy
 		} = req.body;
-		console.log(req.body);
+		
 		const newItem = new Item({
-			itemName,
+			name,
 			description,
 			type,
 			source,
@@ -78,7 +85,7 @@ export async function createItem(req, res) {
 export async function updateItem(req, res) {
 	try {
 		const {
-			itemName,
+			name,
 			description,
 			type,
 			source,
@@ -99,7 +106,7 @@ export async function updateItem(req, res) {
 		
 		const updatedItem = await Item.findByIdAndUpdate(
 			req.params.id, {
-				itemName,
+				name,
 				description,
 				type,
 				source,
@@ -131,6 +138,7 @@ export async function updateItem(req, res) {
 }
 
 export async function deleteItem(req, res) {
+
 	try {
 		const deletedItem = await Item.findByIdAndDelete(req.params.id);
 		
