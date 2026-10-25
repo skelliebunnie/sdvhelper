@@ -3,12 +3,11 @@ import { useState } from "react";
 import api from "../../lib/axios";
 import toast from "react-hot-toast";
 
-import BackButton from "../../components/BackButton"
 import ItemTypeForm from "../../components/ItemTypes/ItemTypeForm";
 
 const ItemTypeCreatePage = ({ addedByList }) => {
   const defaultFormData = {
-    name: "Other",
+    name: "",
     associatedItems: [],
     addedBy: "Vanilla"
   }
@@ -47,8 +46,10 @@ const ItemTypeCreatePage = ({ addedByList }) => {
 
   return (
     <>
-      <BackButton />
-      <ItemTypeForm setFormData={setFormData} formData={formData} handleSubmit={handleSubmit} addedByList={addedByList} saving={saving} />
+      <h1 className="page-title">Create Item Type</h1>
+      <div className="content-wrapper">
+        <ItemTypeForm setFormData={setFormData} formData={formData} handleSubmit={handleSubmit} addedByList={addedByList} saving={saving} />
+      </div>
     </>
   );
 };

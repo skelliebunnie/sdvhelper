@@ -4,7 +4,6 @@ import { useParams } from "react-router";
 import api from "../../lib/axios";
 import toast from "react-hot-toast";
 
-import BackButton from "../../components/BackButton"
 import LoadingMessage from "../../components/Messages/LoadingMessage";
 import LocationForm from "../../components/Locations/LocationForm";
 
@@ -73,8 +72,10 @@ const LocationEditPage = ({ addedByList }) => {
 
   return (
     <>
-      <BackButton />
-      <LocationForm setFormData={setFormData} formData={formData} handleSubmit={handleSubmit} addedByList={addedByList} saving={saving} />
+      <h1 className="page-title">Edit Location: {formData.name}</h1>
+      <div className="content-wrapper">
+        <LocationForm setFormData={setFormData} formData={formData} handleSubmit={handleSubmit} addedByList={addedByList} saving={saving} />  
+      </div>     
     </>
   );
 };

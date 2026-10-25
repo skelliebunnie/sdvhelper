@@ -1,16 +1,17 @@
 import Item from "../models/Item.js";
 import ItemType from "../models/ItemType.js";
 
+import { getItemFields } from "../models/ItemFields.js";
+
 export async function getAllItems(_, res) {
 	try {
 		// this will sort it by the name by default
 		const items = (
 			await Item.find().sort({ name: 1 })
-				.populate("type")
+				.populate("type ingredients locations")
 				.exec()
 		);
-			
-		console.log(items);
+
 		res.status(200).json(items);
 		
 	} catch(error) {
@@ -33,45 +34,7 @@ export async function getItemById(req, res) {
 
 export async function createItem(req, res) {
 	try {
-		const {
-			name,
-			description,
-			type,
-			source,
-			recipeSource,
-			ingredients,
-			sellPrice,
-			edible,
-			difficulty,
-			behavior,
-			size,
-			initialGrowthTime,
-			reproductionTime,
-			processingTime,
-			color,
-			qiColorQuest,
-			addedBy
-		} = req.body;
-		
-		const newItem = new Item({
-			name,
-			description,
-			type,
-			source,
-			recipeSource,
-			ingredients,
-			sellPrice,
-			edible,
-			difficulty,
-			behavior,
-			size,
-			initialGrowthTime,
-			reproductionTime,
-			processingTime,
-			color,
-			qiColorQuest,
-			addedBy
-		});
+		const newItem = new Item(getItemFields(req.body));
 		
 		const savedItem = await newItem.save();
 		res.status(201).json(savedItem);
@@ -84,47 +47,7 @@ export async function createItem(req, res) {
 
 export async function updateItem(req, res) {
 	try {
-		const {
-			name,
-			description,
-			type,
-			source,
-			recipeSource,
-			ingredients,
-			sellPrice,
-			edible,
-			difficulty,
-			behavior,
-			size,
-			initialGrowthTime,
-			reproductionTime,
-			processingTime,
-			color,
-			qiColorQuest,
-			addedBy
-		} = req.body;
-		
-		const updatedItem = await Item.findByIdAndUpdate(
-			req.params.id, {
-				name,
-				description,
-				type,
-				source,
-				recipeSource,
-				ingredients,
-				sellPrice,
-				edible,
-				difficulty,
-				behavior,
-				size,
-				initialGrowthTime,
-				reproductionTime,
-				processingTime,
-				color,
-				qiColorQuest,
-				addedBy
-			}
-		);
+		const updatedItem = await Item.findByIdAndUpdate(req.params.id, getItemFields(req.body));
 		
 		if(!updatedItem) return res.status(404).json({message: "Item not found"});
 		

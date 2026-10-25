@@ -4,7 +4,6 @@ import { useParams } from "react-router";
 import api from "../../lib/axios";
 import toast from "react-hot-toast";
 
-import BackButton from "../../components/BackButton";
 import LoadingMessage from "../../components/Messages/LoadingMessage";
 import ItemForm from "../../components/Items/ItemForm";
 
@@ -23,7 +22,6 @@ const ItemEditPage = ({ addedByList }) => {
         setItemId(res.data._id); // save the id for the put request
 
         delete res.data["_id"]; // remove the id so we can use this as the formData
-        console.log(res.data);
         setFormData(res.data);
       } catch (error) {
         console.error(`Failed to get item with id ${id}`, error);
@@ -47,7 +45,7 @@ const ItemEditPage = ({ addedByList }) => {
     setSaving(true);
 
     try {
-      await api.put(`/item/edit/${itemId}`, {
+      await api.put(`/items/edit/${itemId}`, {
         ...formData,
       });
 
@@ -72,9 +70,8 @@ const ItemEditPage = ({ addedByList }) => {
 
   return (
     <>
-      <h1 className="page-title">Edit Item</h1>
-      <div className="contentWrapper">
-        <BackButton />
+      <h1 className="page-title">Edit Item: {formData.name}</h1>
+      <div className="content-wrapper">
         <ItemForm
           setFormData={setFormData}
           formData={formData}

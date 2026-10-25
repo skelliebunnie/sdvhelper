@@ -1,12 +1,24 @@
 body {
 	font-family: "Cantarell";
-	font-size: 16px;
+	font-size: 18px;
 	background-color: var(--indigo);
 }
 
 a {
 	text-decoration: none;
 	color: var(--indigo);
+	
+	&.icon-link {
+		display: flex;
+		align-items: center;
+	}
+}
+
+hr {
+	border: 0;
+	outline: none;
+	height: 2px;
+	background: var(--indigo);
 }
 
 div.page-wrapper {
@@ -14,6 +26,8 @@ div.page-wrapper {
 	flex-flow: column nowrap;
 	height: 100vh;
 	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
 }
 
 main.page-container {
@@ -28,6 +42,7 @@ main.page-container {
 
 table .edit-delete .icon-link {
 	display: inline-block;
+	cursor: pointer;
 }
 
 .back-button a {
@@ -36,6 +51,11 @@ table .edit-delete .icon-link {
 
 .loader {
 	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
 	svg {
 		margin: 0 auto;
 		color: var(--grey);
@@ -58,4 +78,17 @@ table .edit-delete .icon-link {
 	margin: 0;
 	color: white;
 	padding: 1rem;
+	line-height: 1;
+}
+
+button {
+	margin: 0.5em 0;
+	font-size: 30px;
+	background: var(--lavender);
+	outline: none;
+	border: 2px solid var(--indigo);
+	border-radius: 8px;
+	cursor: pointer;
+	color: white;
+	font-weight: 900;
 }

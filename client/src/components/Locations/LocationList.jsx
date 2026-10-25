@@ -48,8 +48,8 @@ const LocationList = ({ data, setLocations }) => {
 						<th>{location.name ? location.name : ""}</th>
 						<th>{location.addedBy}</th>
 						<th className="edit-delete">
-							<div className="icon-link"><Link to={`/itemtype/edit/${location._id}`}><PencilIcon size={32} /></Link></div>
-							<div className="icon-link"><button onClick={(e) => handleDelete(e, location.name, location._id)}><TrashIcon size={32} /></button></div>
+							<div className="icon-link"><Link to={`/location/edit/${location._id}`}><PencilIcon size={32} /></Link></div>
+							<div className="icon-link" onClick={(e) => handleDelete(e, location.name, location._id)}><TrashIcon size={32} /></div>
 						</th>
 					</tr>
 				)) : "No locations"}

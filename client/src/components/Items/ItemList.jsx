@@ -39,7 +39,7 @@ const ItemList = ({ data, setItems }) => {
 				<tr>
 					<th>Name</th>
 					<th>Type</th>
-					<th>Source</th>
+					<th>Locations</th>
 					<th>Edible</th>
 					<th>From</th>
 					<th>Edit/Delete</th>
@@ -50,7 +50,11 @@ const ItemList = ({ data, setItems }) => {
 					<tr key={item._id} data-id={item._id}>
 						<th>{item.name ? item.name : ""}</th>
 						<th>{item.type ? item.type.name : ""}</th>
-						<th>{item.source ? item.source : ""}</th>
+						<th>{item.locations && item.locations.length > 0 ? (
+							item.locations.map(location => (
+								<span>{location.name}</span>
+							))
+						): ("")}</th>
 						<th>{item.edible && item.edible == true ? <CheckIcon size={32} /> : <XIcon size={32} />}</th>
 						<th>{item.addedBy}</th>
 						<th className="edit-delete">
@@ -73,7 +77,6 @@ const AllItems = () => {
 		const fetchItems = async () => {
 			try {
 				const res = await api.get("/items");
-				console.log(res.data);
 				setItems(res.data);
 				
 				setIsRateLimited(false);

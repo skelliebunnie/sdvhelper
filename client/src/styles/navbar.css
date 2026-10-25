@@ -1,10 +1,12 @@
-header.site-header {
+.site-header {
   display: flex;
   flex-flow: row nowrap;
-  padding: 2rem;
+  padding: 1rem 2rem;
   flex: 0;
   justify-content: space-between;
+  align-items: end;
   width: 100%;
+  line-height: 1;
 
   .title a {
     color: white;
@@ -42,7 +44,6 @@ header.site-header {
     
     li > a {
       flex: 1 0 auto;
-      font-size: 1.5rem;
       display: inline-block;
       padding: 0.5rem 1rem;
       background-color: var(--blue);
@@ -53,5 +54,29 @@ header.site-header {
     a + a {
       border-left: 2px solid var(--indigo);
     }
+  }
+}
+
+.site-nav.desktop { display: none; }
+
+@media (min-width: 768px) {
+  .site-nav.mobile { display: none; }
+  .site-nav.desktop { 
+    display: block; 
+    
+    .menu {
+      height: auto;
+      display: grid;
+      grid-template-columns: repeat(4, auto);
+      justify-content: center;
+      
+      li {
+        margin-right: 0;
+      }
+    }
+  }
+  
+  .site-header {
+    padding-bottom: 0;
   }
 }

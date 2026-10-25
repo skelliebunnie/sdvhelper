@@ -3,19 +3,22 @@ import { useState } from "react";
 import api from "../../lib/axios";
 import toast from "react-hot-toast";
 
-import BackButton from "../../components/BackButton"
 import ItemForm from "../../components/Items/ItemForm";
 
 const ItemCreatePage = ({ addedByList }) => {
   const defaultFormData = {
     name: "",
     description: "",
-    type: "Other",
+    type: "",
     source: "",
     recipeSource: "",
     ingredients: [],
+    equipment: "",
     sellPrice: 0,
     edible: false,
+    locations: [],
+    weather: "",
+    time: [],
     difficulty: 0,
     behavior: "",
     size: "",
@@ -73,7 +76,7 @@ const ItemCreatePage = ({ addedByList }) => {
     <>
       <h1 className="page-title">CREATE ITEM</h1>
       <div className="content-wrapper">
-        <BackButton />
+        
         <ItemForm setFormData={setFormData} formData={formData} handleSubmit={handleSubmit} addedByList={addedByList} saving={saving} />
       </div>
     </>

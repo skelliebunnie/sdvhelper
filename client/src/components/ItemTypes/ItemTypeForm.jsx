@@ -1,10 +1,17 @@
+import { Link } from "react-router";
+import { ChevronsLeftIcon } from "lucide-react-motion";
+
+import "../../styles/form.css";
+
 const ItemTypeForm = ({ setFormData, formData, handleSubmit, addedByList, saving }) => {
   return (
     <>
+      <Link to="/itemtypes" className="icon-link"><ChevronsLeftIcon /> See All Item Types</Link>
+      <hr />
       <small>(*) required</small>
       <form>
-        <label htmlFor="name">
-          * Item Type Name
+        <fieldset>
+          <legend className="required">* Name</legend>
           <input
             type="text"
             name="name"
@@ -15,9 +22,9 @@ const ItemTypeForm = ({ setFormData, formData, handleSubmit, addedByList, saving
               setFormData({ ...formData, name: e.target.value })
             }
           />
-        </label>
-        <fieldset>
-          <legend>* Added by:</legend>
+        </fieldset>
+        <fieldset className="col">
+          <legend className="required">* Added by</legend>
           {addedByList && addedByList.length > 0 ? (
             addedByList.map((source) => (
               <label key={source} htmlFor={source}>

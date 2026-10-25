@@ -3,7 +3,6 @@ import { useState } from "react";
 import api from "../../lib/axios";
 import toast from "react-hot-toast";
 
-import BackButton from "../../components/BackButton"
 import LocationForm from "../../components/Locations/LocationForm";
 
 const LocationCreatePage = ({ addedByList }) => {
@@ -46,8 +45,10 @@ const LocationCreatePage = ({ addedByList }) => {
 
   return (
     <>
-      <BackButton />
-      <LocationForm setFormData={setFormData} formData={formData} handleSubmit={handleSubmit} addedByList={addedByList} saving={saving} />
+      <h1 className="page-title">Create Location</h1>
+      <div className="content-wrapper">
+        <LocationForm setFormData={setFormData} formData={formData} handleSubmit={handleSubmit} addedByList={addedByList} saving={saving} />  
+      </div>     
     </>
   );
 };
