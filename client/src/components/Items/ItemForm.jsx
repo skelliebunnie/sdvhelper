@@ -11,8 +11,8 @@ const ItemForm = ({
   setFormData,
   formData,
   handleSubmit,
-  addedByList,
-  saving,
+  defaultData,
+  saving
 }) => {
   // const formKeys = [
   //   "name",
@@ -34,42 +34,64 @@ const ItemForm = ({
   //   "addedBy",
   // ];
 
-  const [types, setTypes] = useState();
+  const [categories, setCategories] = useState();
   const [locations, setLocations] = useState();
-  const [typesFound, setTypesFound] = useState(false);
-  const [loadingTypes, setLoadingTypes] = useState(true);
+  const [categoriesFound, setCategoriesFound] = useState(false);
+  const [loadingCategories, setLoadingCategories] = useState(true);
   const [loadingLocations, setLoadingLocations] = useState(true);
 
   useEffect(() => {
-    const fetchTypes = async () => {
+    const fetchCategories = async () => {
       try {
-        const res = await api.get("/itemtypes");
-        setTypes(res.data);
-        setTypesFound(true);
+        const res = await api.get("/categories");
+        setCategories(res.data);
+        setCategoriesFound(true);
       } catch (error) {
-        console.error("Error fetching types", error);
-        toast.error("Failed to load types");
+        console.error("Error fetching categories", error);
+        toast.error("Failed to load categories");
       } finally {
-        setLoadingTypes(false);
+        setLoadingCategories(false);
       }
     };
-
-    fetchTypes();
+    fetchCategories();
 
     const fetchLocations = async () => {
       try {
         const res = await api.get("/locations");
         setLocations(res.data);
       } catch (error) {
-        console.error("Error fetching types", error);
-        toast.error("Failed to load types");
+        console.error("Error fetching categories", error);
+        toast.error("Failed to load categories");
       } finally {
         setLoadingLocations(false);
       }
     };
-
     fetchLocations();
+    
   }, [formData]);
+  
+  const handleLocationUpdate = (e) => {
+    console.log(formData.locations)
+    let locationsList = formData.locations;
+    if(e.currentTarget.checked) {
+      locationsList.push(e.target.value);
+    } else {
+      locationsList = formData.locations.filter((location) => location !== e.target.value);
+    }
+    
+    setFormData({...formData, locations: locationsList});
+  }
+  
+  const handleCategoryChange = (cat) => {
+    setFormData({...formData, category: cat});
+    
+    // DEBATING: should fish-only data be cleared if the category is not "Fish"?
+    // for now, no - the category could be changed accidentally, and we'll
+    // check for the category on the detail page/card anyway
+    // if(cat !== "6adcdb79d09453e0e80eaae8") {
+    //   setFormData({...formData, behavior: "", size: 0, difficulty: 0, time: null});
+    // }
+  }
 
   return (
     <>
@@ -96,34 +118,34 @@ const ItemForm = ({
           </fieldset>
 
           <fieldset className="col">
-            <legend className="required">* Type</legend>
-            {types && types.length > 0 ? (
-              types.map((type) => (
-                <label key={type.name} htmlFor={type.name} className="radio-check">
+            <legend className="required">* Category</legend>
+            {categories && categories.length > 0 ? (
+              categories.map((category) => (
+                <label key={category.name} htmlFor={category.name} className="radio-check">
                   <input
                     type="radio"
-                    value={type._id}
-                    checked={ formData.type === type._id }
+                    value={category._id}
+                    checked={ formData.category === category._id }
                     onChange={(e) =>
-                      setFormData({ ...formData, type: e.target.value })
+                      handleCategoryChange(e.target.value)
                     }
                   />
-                  {type.name}
+                  {category.name}
                 </label>
               ))
-            ) : loadingTypes ? (
+            ) : loadingCategories ? (
               <p>
-                <SearchAlert /> Loading Types, please wait ...{" "}
+                <SearchAlert /> Loading Categories, please wait ...{" "}
               </p>
             ) : (
               <p>
-                No types available - please{" "}
-                <Link to="/itemtype/create">create a type</Link> before
+                No categories available - please{" "}
+                <Link to="/category/create">create a category</Link> before
                 continuing!
               </p>
             )}
           </fieldset>
-        {/* end name + type section */}
+        {/* end name + category section */}
 
         <fieldset>
           <legend>Description</legend>
@@ -132,7 +154,7 @@ const ItemForm = ({
             name="description"
             id="description"
             rows={3}
-            placeholder="Ordinary Zebra"
+            placeholder="What a magnificant beast."
             value={formData.description}
             onChange={(e) =>
               setFormData({ ...formData, description: e.target.value })
@@ -150,12 +172,12 @@ const ItemForm = ({
                 <input
                   type="checkbox"
                   value={location._id}
-                  checked={formData.locations ? 
+                  checked={formData.locations && formData.locations.length > 0 ? 
                     formData.locations.includes(location._id)
                     : false
                   }
                   onChange={(e) =>
-                    setFormData({ ...formData, location: formData.locations.push(e.target.value) })
+                    handleLocationUpdate(e)
                   }
                 />
                 {location.name}
@@ -171,6 +193,28 @@ const ItemForm = ({
               <Link to="/location/create">create a location here</Link> (not
               required to create item)
             </p>
+          )}
+        </fieldset>
+        
+        {/* Fish Stuff */}
+        <fieldset className={formData.category === "6adcdb79d09453e0e80eaae8" ? "" : "hidden"}>
+          <legend>Fishes</legend>
+          {defaultData.fishBehavior && defaultData.fishBehavior.length > 0 ? (
+            defaultData.fishBehavior.map((behavior) => (
+              <label key={behavior} htmlFor={behavior} className="radio-check">
+                <input
+                  type="radio"
+                  value={behavior}
+                  checked={formData.behavior === behavior}
+                  onChange={(e) =>
+                    setFormData({ ...formData, behavior: e.target.value })
+                  }
+                />
+                {behavior}
+              </label>
+            ))
+          ) : (
+            <p>No Fish Behavior types available (defaulting to Mixed)</p>
           )}
         </fieldset>
 
@@ -204,8 +248,8 @@ const ItemForm = ({
         {/* ADDED BY (MOD) */}
         <fieldset className="col">
           <legend className="required">* Added by</legend>
-          {addedByList && addedByList.length > 0 ? (
-            addedByList.map((source) => (
+          {defaultData.addedByList && defaultData.addedByList.length > 0 ? (
+            defaultData.addedByList.map((source) => (
               <label key={source} htmlFor={source} className="radio-check">
                 <input
                   type="radio"
@@ -226,11 +270,11 @@ const ItemForm = ({
           <button
             type="submit"
             onClick={handleSubmit}
-            disabled={saving || !typesFound}
+            disabled={saving || !categoriesFound}
           >
             Submit
           </button>
-          {!typesFound && (
+          {!categoriesFound && (
             <span>
               Please create at least one TYPE before creating any items.
             </span>

@@ -70,7 +70,7 @@ const LocationList = ({ data, setLocations }) => {
   );
 };
 
-const AllItemTypes = () => {
+const AllCategories = () => {
   const [isRateLimited, setIsRateLimited] = useState(false);
   const [locations, setLocations] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -108,4 +108,4 @@ const AllItemTypes = () => {
   );
 };
 
-export default AllItemTypes;
+export default AllCategories;

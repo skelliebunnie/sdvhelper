@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router";
+// import { useState } from "react";
 
 import Navbar from "./components/Navbar";
 
@@ -12,10 +13,10 @@ import ItemCreatePage from "./pages/Items/ItemCreatePage";
 import ItemEditPage from "./pages/Items/ItemEditPage";
 
 // ITEM TYPE PAGES
-import ItemTypesPage from "./pages/ItemTypes/ItemTypesPage";
-import ItemTypeDetailPage from "./pages/ItemTypes/ItemTypeDetailPage";
-import ItemTypeCreatePage from "./pages/ItemTypes/ItemTypeCreatePage";
-import ItemTypeEditPage from "./pages/ItemTypes/ItemTypeEditPage";
+import CategoriesPage from "./pages/Categories/CategoriesPage";
+import CategoryDetailPage from "./pages/Categories/CategoryDetailPage";
+import CategoryCreatePage from "./pages/Categories/CategoryCreatePage";
+import CategoryEditPage from "./pages/Categories/CategoryEditPage";
 
 // LOCATION PAGES
 import LocationsPage from "./pages/Locations/LocationsPage";
@@ -23,14 +24,38 @@ import LocationDetailPage from "./pages/Locations/LocationDetailPage";
 import LocationCreatePage from "./pages/Locations/LocationCreatePage";
 import LocationEditPage from "./pages/Locations/LocationEditPage";
 
+
 const App = () => {
-  const addedByList = [
-    "Vanilla",
-    "Stardew Valley Expanded",
-    "Ridgeside",
-    "Eastscarp",
-    "Other",
-  ];
+  const defaultData = {
+    "addedByList": [
+      "Vanilla",
+      "Stardew Valley Expanded",
+      "Ridgeside",
+      "Eastscarp",
+      "Other",
+    ],
+    "seasons": [
+      "Spring",
+      "Summer",
+      "Fall",
+      "Winter",
+      "Any"
+    ],
+    "weather": [
+      "Rain",
+      "Sunny",
+      "Any"
+    ],
+    "fishBehavior": [
+      "Mixed",
+      "Smooth",
+      "Sinker",
+      "Floater",
+      "Dart"
+    ]
+  }
+  
+  // const [isEditing, setIsEditing] = useState(false);
   
   return (
     <>
@@ -43,20 +68,20 @@ const App = () => {
             {/* ITEM PAGES */}
             <Route path="/items" element={<ItemsPage />} />
             <Route path="/item/:id" element={<ItemDetailPage />} />
-            <Route path="/item/create" element={<ItemCreatePage addedByList={addedByList} />} />
-            <Route path="/item/edit/:id" element={<ItemEditPage addedByList={addedByList} />} />
+            <Route path="/item/create" element={<ItemCreatePage defaultData={defaultData} />} />
+            <Route path="/item/edit/:id" element={<ItemEditPage defaultData={defaultData} />} />
             
             {/* ITEM TYPE PAGES */}
-            <Route path="/itemtypes" element={<ItemTypesPage />} />
-            <Route path="/itemtype/:id" element={<ItemTypeDetailPage />} />
-            <Route path="/itemtype/create" element={<ItemTypeCreatePage addedByList={addedByList} />} />
-            <Route path="/itemtype/edit/:id" element={<ItemTypeEditPage addedByList={addedByList} />} />
+            <Route path="/categories" element={<CategoriesPage />} />
+            <Route path="/category/:id" element={<CategoryDetailPage />} />
+            <Route path="/category/create" element={<CategoryCreatePage defaultData={defaultData} />} />
+            <Route path="/category/edit/:id" element={<CategoryEditPage defaultData={defaultData} />} />
             
             {/* LOCATIONS PAGES */}
             <Route path="/locations" element={<LocationsPage />} />
             <Route path="/location/:id" element={<LocationDetailPage />} />
-            <Route path="/location/create" element={<LocationCreatePage addedByList={addedByList} />} />
-            <Route path="/location/edit/:id" element={<LocationEditPage addedByList={addedByList} />} />
+            <Route path="/location/create" element={<LocationCreatePage defaultData={defaultData} />} />
+            <Route path="/location/edit/:id" element={<LocationEditPage defaultData={defaultData} />} />
             
           </Routes>
         </main>

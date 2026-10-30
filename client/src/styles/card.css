@@ -58,8 +58,13 @@
 		align-items: center;
 	}
 	
-	.mod {
-		flex: 0;
+	.footer {
+		display: flex;
+		justify-content: space-between;
+	}
+	
+	.mod-buttons {
+		flex: 0 0 auto;
 		padding: 1rem 0.5rem 0.75rem;
 		display: flex;
 		align-items: center;

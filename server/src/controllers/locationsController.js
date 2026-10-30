@@ -16,7 +16,7 @@ export async function getAllLocations(_, res) {
 export async function getLocationById(req, res) {
 	try {
 		const location = await Location.findById(req.params.id);
-		if(!location) return res.status(404).json({message: "Item Type not found"});
+		if(!location) return res.status(404).json({message: "Category not found"});
 		res.status(200).json(location);
 	} catch(error) {
 		console.error("Error in getLocationById controller", error);
@@ -59,7 +59,7 @@ export async function updateLocation(req, res) {
 			}
 		);
 		
-		if(!updatedLocation) return res.status(404).json({message: "Item Type not found"});
+		if(!updatedLocation) return res.status(404).json({message: "Category not found"});
 		
 		res.status(200).json(updatedLocation);
 		
@@ -75,9 +75,9 @@ export async function deleteLocation(req, res) {
 	try {
 		const deletedLocation = await Location.findByIdAndDelete(req.params.id);
 		
-		if(!deletedLocation) return res.status(404).json({message: "Item Type not found"});
+		if(!deletedLocation) return res.status(404).json({message: "Category not found"});
 		
-		res.status(200).json({ message: "Item Type deleted successfully" });
+		res.status(200).json({ message: "Category deleted successfully" });
 		
 	} catch(error) {
 		// server failed

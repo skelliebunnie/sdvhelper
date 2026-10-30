@@ -1,7 +1,7 @@
 export const ITEM_FIELDS = [
 	"name",
 	"description",
-	"type",
+	"category",
 	"source",
 	"recipeSource",
 	"ingredients",

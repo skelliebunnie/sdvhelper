@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 
 import LocationForm from "../../components/Locations/LocationForm";
 
-const LocationCreatePage = ({ addedByList }) => {
+const LocationCreatePage = ({ defaultData }) => {
   const defaultFormData = {
     name: "",
     addedBy: "Vanilla"
@@ -47,7 +47,7 @@ const LocationCreatePage = ({ addedByList }) => {
     <>
       <h1 className="page-title">Create Location</h1>
       <div className="content-wrapper">
-        <LocationForm setFormData={setFormData} formData={formData} handleSubmit={handleSubmit} addedByList={addedByList} saving={saving} />  
+        <LocationForm setFormData={setFormData} formData={formData} handleSubmit={handleSubmit} addedByList={defaultData.addedByList} saving={saving} />  
       </div>     
     </>
   );

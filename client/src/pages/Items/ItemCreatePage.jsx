@@ -5,11 +5,11 @@ import toast from "react-hot-toast";
 
 import ItemForm from "../../components/Items/ItemForm";
 
-const ItemCreatePage = ({ addedByList }) => {
+const ItemCreatePage = ({ defaultData }) => {
   const defaultFormData = {
     name: "",
     description: "",
-    type: "",
+    category: "",
     source: "",
     recipeSource: "",
     ingredients: [],
@@ -41,8 +41,8 @@ const ItemCreatePage = ({ addedByList }) => {
       return;
     }
     
-    if(!formData.type.trim()) {
-      toast.error("Type is required!");
+    if(!formData.category.trim()) {
+      toast.error("Category is required!");
       return;
     }
     
@@ -77,7 +77,7 @@ const ItemCreatePage = ({ addedByList }) => {
       <h1 className="page-title">CREATE ITEM</h1>
       <div className="content-wrapper">
         
-        <ItemForm setFormData={setFormData} formData={formData} handleSubmit={handleSubmit} addedByList={addedByList} saving={saving} />
+        <ItemForm setFormData={setFormData} formData={formData} handleSubmit={handleSubmit} addedByList={defaultData.addedByList} saving={saving} />
       </div>
     </>
   );

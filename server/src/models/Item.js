@@ -8,7 +8,7 @@ const itemSchema = new mongoose.Schema({
 		type: String,
 		required: true
 	},
-	type: { type: mongoose.Schema.ObjectId, ref: 'ItemType' },
+	category: { type: mongoose.Schema.ObjectId, ref: 'Category' },
 	description: String,
 	source: String,
 	recipeSource: [String],

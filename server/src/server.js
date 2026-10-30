@@ -9,7 +9,7 @@ dotenv.config();
 
 // routes
 import itemRoutes from "./routes/itemRoutes.js";
-import itemTypeRoutes from "./routes/ItemTypeRoutes.js";
+import categoryRoutes from "./routes/CategoryRoutes.js";
 import locationRoutes from "./routes/locationRoutes.js";
 
 const app = express();
@@ -27,7 +27,7 @@ app.use(express.json()); // parses JSON bodies: req.body
 app.use(rateLimiter);
 
 app.use("/api/items", itemRoutes);
-app.use("/api/itemtypes", itemTypeRoutes);
+app.use("/api/categories", categoryRoutes);
 app.use("/api/locations", locationRoutes);
 
 // connect to database before connecting to app/server

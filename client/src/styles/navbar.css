@@ -49,6 +49,10 @@
       background-color: var(--blue);
       border-radius: 40px;
       text-align: center;
+      
+      &.navlink-green {
+        background: var(--green);
+      }
     }
     
     a + a {

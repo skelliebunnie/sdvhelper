@@ -1,5 +1,5 @@
 import Item from "../models/Item.js";
-import ItemType from "../models/ItemType.js";
+import Category from "../models/Category.js";
 
 import { getItemFields } from "../models/ItemFields.js";
 
@@ -8,7 +8,7 @@ export async function getAllItems(_, res) {
 		// this will sort it by the name by default
 		const items = (
 			await Item.find().sort({ name: 1 })
-				.populate("type ingredients locations")
+				.populate("category ingredients locations")
 				.exec()
 		);
 

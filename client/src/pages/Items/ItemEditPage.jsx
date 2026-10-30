@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 import LoadingMessage from "../../components/Messages/LoadingMessage";
 import ItemForm from "../../components/Items/ItemForm";
 
-const ItemEditPage = ({ addedByList }) => {
+const ItemEditPage = ({ defaultData }) => {
   const [formData, setFormData] = useState(null);
   const [itemId, setItemId] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -23,6 +23,7 @@ const ItemEditPage = ({ addedByList }) => {
 
         delete res.data["_id"]; // remove the id so we can use this as the formData
         setFormData(res.data);
+        
       } catch (error) {
         console.error(`Failed to get item with id ${id}`, error);
         toast.error("Failed to fetch item");
@@ -76,7 +77,7 @@ const ItemEditPage = ({ addedByList }) => {
           setFormData={setFormData}
           formData={formData}
           handleSubmit={handleSubmit}
-          addedByList={addedByList}
+          defaultData={defaultData}
           saving={saving}
         />
       </div>

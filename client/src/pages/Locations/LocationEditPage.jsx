@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 import LoadingMessage from "../../components/Messages/LoadingMessage";
 import LocationForm from "../../components/Locations/LocationForm";
 
-const LocationEditPage = ({ addedByList }) => {
+const LocationEditPage = ({ defaultData }) => {
   const [formData, setFormData] = useState(null);
   const [locationId, setLocationId] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -74,7 +74,7 @@ const LocationEditPage = ({ addedByList }) => {
     <>
       <h1 className="page-title">Edit Location: {formData.name}</h1>
       <div className="content-wrapper">
-        <LocationForm setFormData={setFormData} formData={formData} handleSubmit={handleSubmit} addedByList={addedByList} saving={saving} />  
+        <LocationForm setFormData={setFormData} formData={formData} handleSubmit={handleSubmit} addedByList={defaultData.addedByList} saving={saving} />  
       </div>     
     </>
   );
