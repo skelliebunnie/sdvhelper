@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
-import { PencilIcon, TrashIcon } from "lucide-react";
-import { Link } from "react-router";
 import toast from "react-hot-toast";
 import api from "../../lib/axios";
 
+import EditDeleteButtons from "../EditDeleteButtons";
 import RateLimitMessage from "../Messages/RateLimitMessage";
 import LoadingMessage from "../Messages/LoadingMessage";
 
@@ -50,17 +49,7 @@ const LocationList = ({ data, setLocations }) => {
                 <td data-label="Name">{location.name ? location.name : ""}</td>
                 <td data-label="Added By">{location.addedBy}</td>
                 <td data-label="Edit/Delete" className="mod">
-                  <div className="icon-button">
-                    <Link to={`/location/edit/${data._id}`}>
-                      <PencilIcon size={32} />
-                    </Link>
-                  </div>
-                  <div
-                    className="icon-button"
-                    onClick={(e) => handleDelete(e, data.name, data._id)}
-                  >
-                    <TrashIcon size={32} />
-                  </div>
+                  <EditDeleteButtons id={data._id} name={data.name} target="location" handleDelete={handleDelete} />
                 </td>
               </tr>
             ))

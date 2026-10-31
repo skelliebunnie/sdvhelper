@@ -1,13 +1,12 @@
 import { CheckIcon, XIcon } from "lucide-react";
 
-import EditDeleteButtons from "./EditDeleteButtons";
-import Asset from "./Asset";
+import EditDeleteButtons from "../EditDeleteButtons";
+import Asset from "../Asset";
 
-import "../styles/card.css";
+import "../../styles/card.css";
 
 const Card = ({ data, dataType, handleDelete }) => {
   const isFish = data.category.name === "Fish" ? true : false;
-  console.log(data);
   
   return (
     <div className="card" key={data._id}>
@@ -53,14 +52,6 @@ const Card = ({ data, dataType, handleDelete }) => {
             </div>
           )}
           <EditDeleteButtons id={data._id} name={data.name} target={dataType} handleDelete={handleDelete} />
-          {/* <div className="icon-button">
-            <Link to={`/${dataType}/edit/${data._id}`}>
-              <PencilIcon size={32} />
-            </Link>
-          </div>
-          <div className="icon-button" onClick={(e) => handleDelete(e, data.name, data._id)}>
-              <TrashIcon size={32} />
-          </div> */}
         </div>
       </div>
     </div>

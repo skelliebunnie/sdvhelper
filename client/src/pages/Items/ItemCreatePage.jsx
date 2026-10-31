@@ -14,6 +14,7 @@ const ItemCreatePage = ({ defaultData }) => {
     recipeSource: "",
     ingredients: [],
     equipment: "",
+    sellable: false,
     sellPrice: 0,
     edible: false,
     locations: [],
@@ -24,10 +25,13 @@ const ItemCreatePage = ({ defaultData }) => {
     size: "",
     initialGrowthTime: 0,
     reproductionTime: 0,
-    processingTime: 0,
-    color: "",
+    baseHealth: 0,
+    baseEnergy: 0,
+    dyepotColor: "",
+    sewingColor: "",
     qiColorQuest: false,
-    addedBy: "Vanilla",
+    universal: 0,
+    addedBy: "Vanilla"
   }
   
   const [formData, setFormData] = useState(defaultFormData);
@@ -77,7 +81,7 @@ const ItemCreatePage = ({ defaultData }) => {
       <h1 className="page-title">CREATE ITEM</h1>
       <div className="content-wrapper">
         
-        <ItemForm setFormData={setFormData} formData={formData} handleSubmit={handleSubmit} addedByList={defaultData.addedByList} saving={saving} />
+        <ItemForm setFormData={setFormData} formData={formData} handleSubmit={handleSubmit} defaultData={defaultData} saving={saving} />
       </div>
     </>
   );

@@ -49,7 +49,7 @@ function Asset({ name = "", type = "item", size = "small", alt = "" }) {
 	})
 
   return (
-    <>{imageExists ? <img src={imagePath} alt={alt} className={`icon ${size}`} /> : <BanIcon size={64} color="pink" />}</>
+    <>{imageExists ? <img src={imagePath} alt={alt} title={alt} className={`icon ${size}`} /> : <BanIcon size={64} color="pink" />}</>
   );
 }
 

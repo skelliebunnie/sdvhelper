@@ -31,6 +31,8 @@ hr {
 	height: 2px;
   background: linear-gradient(to right, rgba(160, 108, 213, 0), rgba(160, 108, 213, 1) 20%, rgba(160, 108, 213, 1) 80%, rgba(160, 108, 213, 0));
 	margin: 0.25rem 0;
+	width: 100%;
+	flex: 1 0 auto;
 }
 
 .hidden {
@@ -58,7 +60,8 @@ main.page-container {
 	padding: 1rem;
 }
 
-table .edit-delete .icon-link {
+.icon-link,
+.icon-button {
 	display: inline-block;
 	cursor: pointer;
 }

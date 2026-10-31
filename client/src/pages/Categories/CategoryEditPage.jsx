@@ -22,7 +22,6 @@ const CategoryEditPage = ({ defaultData }) => {
         setCategoryId(res.data._id); // save the id for the put request
 
         delete res.data["_id"]; // remove the id so we can use this as the formData
-        console.log(res.data)
         setFormData(res.data);
       } catch (error) {
         console.error(`Failed to get category with id ${id}`, error);

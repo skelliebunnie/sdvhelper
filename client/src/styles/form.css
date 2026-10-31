@@ -1,16 +1,17 @@
-
-
 fieldset {
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: start;
+	align-items: start;
+	gap: 0.5em;
 	border: 1px solid var(--lavender);
-	
-	&.col {
-		display: grid;
-		grid-template-columns: repeat(2, auto);
-		column-gap: 1rem;
-		row-gap: 0.5rem;
-	}
+}
+
+.col {
+	display: grid;
+	grid-template-columns: repeat(2, auto);
+	row-gap: 0.5rem;
+	column-gap: 1rem;
 }
 
 .required {
@@ -23,9 +24,16 @@ legend {
 	font-weight: 900;
 }
 
-label,
+label {
+	display: flex;
+	align-items: center;
+	&.title-case {
+		text-transform: capitalize;
+	}
+}
+
 .input-wrapper {
-	flex: 1;
+	flex: 1 0 auto;
 	display: flex;
 	align-items: center;
 	gap: 0.5rem;
@@ -35,6 +43,8 @@ label,
 	display: flex;
 	flex-direction: column;
 	align-items: start;
+	gap: 0.5em;
+	width: 100%;
 }
 
 input[type="text"], textarea {
@@ -48,10 +58,13 @@ input[type="text"], textarea {
 	display: grid;
 	grid-template-columns: 1em auto;
 	gap: 0.5em;
+	align-items: center;
+	line-height: 1;
 }
 
 input[type="checkbox"],
 input[type="radio"] {
+	position: relative;
 	flex: 0 0 auto;
 	margin: 8px;
 	--webkit-appearance: none;
@@ -69,6 +82,7 @@ input[type="radio"] {
 	place-content: center;
 	
 	&::before {
+		position: relative;
 		content: "";
 		width: 0.65em;
 		height: 0.65em;
@@ -95,4 +109,20 @@ button:disabled,
 input:disabled {
 	background: black;
 	color: var(--grey);
+}
+
+.field-wrapper {
+	.flex {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5em;
+	}
+}
+
+@media (min-width: 1200px) {
+	form .main {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1rem;
+	}
 }

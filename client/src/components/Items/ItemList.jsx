@@ -4,7 +4,7 @@ import api from "../../lib/axios";
 
 import RateLimitMessage from "../Messages/RateLimitMessage";
 import LoadingMessage from "../Messages/LoadingMessage";
-import Card from "../Card";
+import ItemCard from "./ItemCard";
 
 const NoItems = () => {
   return <h2>No Items Found</h2>;
@@ -36,7 +36,7 @@ const ItemList = ({ data, setItems }) => {
       <div className="col-2">
 			{items
         ? items.map((item) => (
-            <Card data={item} dataType="item" handleDelete={handleDelete} />
+            <ItemCard data={item} dataType="item" handleDelete={handleDelete} />
           ))
         : "No items"}
 			</div>

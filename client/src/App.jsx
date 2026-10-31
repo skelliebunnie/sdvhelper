@@ -24,39 +24,78 @@ import LocationDetailPage from "./pages/Locations/LocationDetailPage";
 import LocationCreatePage from "./pages/Locations/LocationCreatePage";
 import LocationEditPage from "./pages/Locations/LocationEditPage";
 
-
 const App = () => {
   const defaultData = {
-    "addedByList": [
+    addedByList: [
       "Vanilla",
       "Stardew Valley Expanded",
       "Ridgeside",
-      "Eastscarp",
-      "Other",
+      "Eastscarp"
     ],
-    "seasons": [
-      "Spring",
-      "Summer",
-      "Fall",
-      "Winter",
-      "Any"
+    recipeSources: [
+      "Queen of Sauce",
+      "Farming Level-up Reward",
+      "NPC Mail",
+      "Foraging Level-up Reward",
+      "Shop Purchase",
+      "Fishing Level-up Reward",
+      "Evelyn 4-heart Event",
+      "Combat Level-up Reward",
+      "Ginger Island Resort",
+      "Mining Level-up Reward",
     ],
-    "weather": [
-      "Rain",
-      "Sunny",
-      "Any"
+    seasons: ["Spring", "Summer", "Fall", "Winter", "Any"],
+    weather: ["Any", "Rain", "Sun"],
+    fishBehavior: ["Mixed", "Smooth", "Sinker", "Floater", "Dart"],
+    dyepotColors: ["Red", "Orange", "Yellow", "Green", "Blue", "Purple"],
+    sewingColors: [
+      "aquamarine",
+      "black",
+      "blue",
+      "brown",
+      "copper",
+      "cyan",
+      "dark blue",
+      "dark brown",
+      "teal",
+      "dark gray",
+      "dark green",
+      "dark pink",
+      "dark purple",
+      "dark red",
+      "dark yellow",
+      "gold",
+      "gray",
+      "green",
+      "iridium",
+      "iron",
+      "jade",
+      "light cyan",
+      "lime",
+      "orange",
+      "pale violet red",
+      "pink",
+      "poppyseed",
+      "purple",
+      "red",
+      "salmon",
+      "sand",
+      "white", 
+      "yellow",
+      "yellow green"
     ],
-    "fishBehavior": [
-      "Mixed",
-      "Smooth",
-      "Sinker",
-      "Floater",
-      "Dart"
+    universal: [
+      "None",
+      "Loved",
+      "Liked",
+      "Neutral",
+      "Disliked",
+      "Hated"
     ]
-  }
-  
+  };
+
   // const [isEditing, setIsEditing] = useState(false);
-  
+
   return (
     <>
       <div className="page-wrapper">
@@ -64,25 +103,42 @@ const App = () => {
         <main className="page-container">
           <Routes>
             <Route path="/" element={<HomePage />} />
-            
+
             {/* ITEM PAGES */}
             <Route path="/items" element={<ItemsPage />} />
             <Route path="/item/:id" element={<ItemDetailPage />} />
-            <Route path="/item/create" element={<ItemCreatePage defaultData={defaultData} />} />
-            <Route path="/item/edit/:id" element={<ItemEditPage defaultData={defaultData} />} />
-            
+            <Route
+              path="/item/create"
+              element={<ItemCreatePage defaultData={defaultData} />}
+            />
+            <Route
+              path="/item/edit/:id"
+              element={<ItemEditPage defaultData={defaultData} />}
+            />
+
             {/* ITEM TYPE PAGES */}
             <Route path="/categories" element={<CategoriesPage />} />
             <Route path="/category/:id" element={<CategoryDetailPage />} />
-            <Route path="/category/create" element={<CategoryCreatePage defaultData={defaultData} />} />
-            <Route path="/category/edit/:id" element={<CategoryEditPage defaultData={defaultData} />} />
-            
+            <Route
+              path="/category/create"
+              element={<CategoryCreatePage defaultData={defaultData} />}
+            />
+            <Route
+              path="/category/edit/:id"
+              element={<CategoryEditPage defaultData={defaultData} />}
+            />
+
             {/* LOCATIONS PAGES */}
             <Route path="/locations" element={<LocationsPage />} />
             <Route path="/location/:id" element={<LocationDetailPage />} />
-            <Route path="/location/create" element={<LocationCreatePage defaultData={defaultData} />} />
-            <Route path="/location/edit/:id" element={<LocationEditPage defaultData={defaultData} />} />
-            
+            <Route
+              path="/location/create"
+              element={<LocationCreatePage defaultData={defaultData} />}
+            />
+            <Route
+              path="/location/edit/:id"
+              element={<LocationEditPage defaultData={defaultData} />}
+            />
           </Routes>
         </main>
       </div>

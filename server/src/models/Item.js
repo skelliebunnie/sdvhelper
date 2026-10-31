@@ -6,14 +6,15 @@ import mongoose from "mongoose";
 const itemSchema = new mongoose.Schema({
 	name: {
 		type: String,
-		required: true
+		required: [true, "Item Name required"]
 	},
 	category: { type: mongoose.Schema.ObjectId, ref: 'Category' },
 	description: String,
-	source: String,
+	// source: String,
 	recipeSource: [String],
 	ingredients: [{ type: mongoose.Schema.ObjectId, ref: 'Item' }],
 	equipment: String,
+	sellable: Boolean,
 	sellPrice: {
 		type: Number,
 		required: false,
@@ -24,7 +25,13 @@ const itemSchema = new mongoose.Schema({
 		}
 	},
 	edible: Boolean,
-	locations: [{ type: mongoose.Schema.ObjectId, ref: 'Location' }],
+	locations: [{ 
+		season: String,
+		locations: [{
+			type: mongoose.Schema.ObjectId, 
+			ref: 'Location'
+		}]
+	 }],
 	weather: String,
 	time: [{
 		season: String,
@@ -60,7 +67,25 @@ const itemSchema = new mongoose.Schema({
 	},
 	behavior: String,
 	size: String,
-	initialGrowthTime: {
+	// initialGrowthTime: {
+	// 	type: Number,
+	// 	required: false,
+	// 	unique: false,
+	// 	validate: {
+	// 		validator: Number.isInteger,
+	// 		message: "{VALUE} is not an integer"
+	// 	}
+	// },
+	// reproductionTime: {
+	// 	type: Number,
+	// 	required: false,
+	// 	unique: false,
+	// 	validate: {
+	// 		validator: Number.isInteger,
+	// 		message: "{VALUE} is not an integer"
+	// 	}
+	// },
+	baseEnergy: {
 		type: Number,
 		required: false,
 		unique: false,
@@ -69,7 +94,7 @@ const itemSchema = new mongoose.Schema({
 			message: "{VALUE} is not an integer"
 		}
 	},
-	reproductionTime: {
+	baseHealth: {
 		type: Number,
 		required: false,
 		unique: false,
@@ -78,20 +103,23 @@ const itemSchema = new mongoose.Schema({
 			message: "{VALUE} is not an integer"
 		}
 	},
-	processingTime: {
-		type: Number,
-		required: false,
-		unique: false,
-		validate: {
-			validator: Number.isInteger,
-			message: "{VALUE} is not an integer"
-		}
-	},
-	color: String,
+	dyepotColor: String,
+	sewingColor: String,
 	qiColorQuest: Boolean,
+	universal: {
+		type: Number,
+		required: false,
+		unique: false,
+		min: 0,
+		max: 5,
+		validate: {
+			validator: Number.isInteger,
+			message: "{VALUE} is not an integer"
+		}
+	},
 	addedBy: {
 		type: String,
-		required: true,
+		required: [true, "How did the item get added to the game?"],
 		defaultValue: 'Vanilla'
 	}
 }, { timestamps: true });

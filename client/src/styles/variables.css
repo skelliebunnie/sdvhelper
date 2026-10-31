@@ -19,4 +19,40 @@
 	--cream: #f5f0ea;
 	--forest: #2B9720;
 	--lavender: #A06CD5;
+	
+	/* SEWING COLORS */
+	--item_aquamarine: rgb(127,255,212);
+	--item_black: rgb(45,45,45);
+	--item_blue: rgb(46,85,183);
+	--item_brown: rgb(130,73,37);
+	--item_copper: rgb(179,85,0);
+	--item_cyan: rgb(0,255,255);
+	--item_darkblue: rgb(0,0,139);
+	--item_darkbrown: rgb(139,69,19);
+	--item_teal: rgb(0,139,139);
+	--item_darkgray: rgb(169,169,169);
+	--item_darkgreen: rgb(0,100,0);
+	--item_darkpink: rgb(255,20,147);
+	--item_darkpurple: rgb(148,0,211);
+	--item_darkred: rgb(139,0,0);
+	--item_darkyellow: rgb(184,134,11);
+	--item_gold: rgb(255,215,0);
+	--item_gray: rgb(128,128,128);
+	--item_green: rgb(10,143,0);
+	--item_iridium: rgb(105,15,255);
+	--item_iron: rgb(197,213,224);
+	--item_jade: rgb(130,158,93);
+	--item_lightcyan: rgb(180,255,255);
+	--item_lime: rgb(0,255,0);
+	-item_orange: rgb(255,128,0);
+	--item_palevioletred: rgb(219,112,147);
+	--item_pink: rgb(255,163,186);
+	--item_poppyseed: rgb(82,47,153);
+	--item_purple: rgb(115,41,181);
+	--item_red: rgb(220,0,0);
+	--item_salmon: rgb(255,85,95);
+	--item_sand: rgb(255,222,173);
+	--item_white: rgb(255,255,255);
+	--item_yellow: rgb(255,230,0);
+	--item_yellowgreen: rgb(173,255,47);
 }
